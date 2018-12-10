@@ -15,18 +15,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/foods/list', 'FoodController@index');
+Route::get('/admin/foods/list', 'FoodController@index')->middleware('checkLogin');
 
-Route::get('/admin/foods/add', 'FoodController@getAdd')->name('food.getAdd');
+Route::get('/admin/foods/add', 'FoodController@getAdd')->middleware('checkLogin')->name('food.getAdd');
 
-Route::post('/admin/foods/add', 'FoodController@postAdd')->name('food.postAdd');
+Route::post('/admin/foods/add', 'FoodController@postAdd')->middleware('checkLogin')->name('food.postAdd');
 
 Route::get('/admin/foods/edit/{id?}', 'FoodController@getEdit')->name('food.getEdit');
 
-Route::post('/admin/foods/edit/{id?}', 'FoodController@postEdit')->name('food.postEdit');
+Route::post('/admin/foods/edit/{id?}', 'FoodController@postEdit')->middleware('checkLogin')->name('food.postEdit');
 
 Route::post('/admin/foods/delete/{id?}', 'FoodController@delete')->name('food.delete');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('admin/login', function() {
+
+})->middleware('checkLogin');
+
+// Route::get('admin/login', function() {
+
+// })->middleware(CheckLogin::class);
