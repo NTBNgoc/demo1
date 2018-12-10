@@ -26,3 +26,7 @@ Route::get('/admin/foods/edit/{id?}', 'FoodController@getEdit')->name('food.getE
 Route::post('/admin/foods/edit/{id?}', 'FoodController@postEdit')->name('food.postEdit');
 
 Route::post('/admin/foods/delete/{id?}', 'FoodController@delete')->name('food.delete');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
