@@ -2,7 +2,9 @@
 <html>
     <head>
         <title></title>
-        <link rel="stylesheet" type="text/css" href="css/stype.css"> 
+        <link rel="stylesheet" type="text/css" href="css/stype.css">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{ csrf_token() }}
     </head>
     <body>
         @if(Auth::check())
@@ -12,7 +14,7 @@
             <div class="login">
                 <div class="login">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><span class="hidden-xs">Logout</span></a>
+                        document.getElementById('logout-form').submit();"><span class="hidden-xs">Logout</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
